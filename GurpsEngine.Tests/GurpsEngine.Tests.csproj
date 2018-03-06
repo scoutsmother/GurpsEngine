@@ -69,8 +69,8 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Models\Geo\Geometry\PointTests.cs" />
     <Compile Include="Models\Geo\GridAreaTests.cs" />
-    <Compile Include="Models\Geo\RuleEnforcedAreaTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Rolling\QuickContestTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Rules\LocationRuleSet.Tests.cs" />

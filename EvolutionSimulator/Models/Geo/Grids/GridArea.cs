@@ -34,9 +34,9 @@ namespace EvolutionSimulator.Models.Geo.Grids
       List<int> heightRange = Enumerable.Range(0, height).ToList();
 
       Points = (from x in widthRange
-                   from y in heightRange
-                   where !EntitiesFromPoint.ContainsKey((new Point(x, y)))
-                   select new Point(x, y))
+          from y in heightRange
+          where !EntitiesFromPoint.ContainsKey((new Point(x, y)))
+          select new Point(x, y))
         .ToList();
 
       // Create locations for each point in the area.
@@ -69,6 +69,8 @@ namespace EvolutionSimulator.Models.Geo.Grids
 
       return EntitiesFromPoint.ContainsKey(p);
     }
+
+    public bool Valid(IEntity e, Direction d) => Valid(Where(e) + d);
 
     public virtual void Add(IEntity e, Point p)
     {

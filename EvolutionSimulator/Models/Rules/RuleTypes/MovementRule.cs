@@ -10,22 +10,19 @@ namespace EvolutionSimulator.Models.Rules.RuleTypes
     Teleport
   }
 
-  public class MovementRule : IRuleRequirement
+  public class MovementRule : GenericRule
   {
-    public Direction RuleDirection { get; }
-    public double Diff { get; }
     public MoveType Type { get; }
 
-    public MovementRule(Direction ruleDirection, MoveType type, double diff)
+    public MovementRule(Direction ruleDirection, MoveType type, double diff) 
+      : base(ruleDirection, diff)
     {
-      RuleDirection = ruleDirection;
-      Diff = diff;
       Type = type;
     }
 
-    public bool TrySatisfy(IRollable roll)
+    public override bool TrySatisfy(IRollable roll)
     {
-      return roll.Roll();
+      return base.TrySatisfy(roll);
     }
   }
 }

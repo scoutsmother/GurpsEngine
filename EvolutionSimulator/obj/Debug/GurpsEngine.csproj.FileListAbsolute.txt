@@ -4,3 +4,7 @@ C:\Users\Ben_Swolo\source\repos\EvolutionSimulator\EvolutionSimulator\bin\Debug\
 C:\Users\Ben_Swolo\source\repos\EvolutionSimulator\EvolutionSimulator\bin\Debug\EvolutionSimulator.pdb
 C:\Users\Ben_Swolo\source\repos\EvolutionSimulator\EvolutionSimulator\obj\Debug\EvolutionSimulator.dll
 C:\Users\Ben_Swolo\source\repos\EvolutionSimulator\EvolutionSimulator\obj\Debug\EvolutionSimulator.pdb
+C:\Users\Ben_Swolo\Source\Repos\Github\GurpsEngine\EvolutionSimulator\obj\Debug\GurpsEngine.csprojResolveAssemblyReference.cache
+C:\Users\Ben_Swolo\Source\Repos\Github\GurpsEngine\EvolutionSimulator\obj\Debug\GurpsEngine.csproj.CoreCompileInputs.cache
+C:\Users\Ben_Swolo\Source\Repos\Github\GurpsEngine\EvolutionSimulator\obj\Debug\EvolutionSimulator.dll
+C:\Users\Ben_Swolo\Source\Repos\Github\GurpsEngine\EvolutionSimulator\obj\Debug\EvolutionSimulator.pdb

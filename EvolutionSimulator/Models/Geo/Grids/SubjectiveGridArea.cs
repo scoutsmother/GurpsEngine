@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EvolutionSimulator.Models.Geo.Grids
 {
-  public class SubjectiveGridArea : RuleEnforcedArea
+  public class SubjectiveGridArea : RuleBasedArea
   {
     public SubjectiveGridArea(int width, int height) : base(width, height)
     {

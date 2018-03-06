@@ -18,3 +18,7 @@ C:\Users\Ben_Swolo\source\repos\EvolutionSimulator\GurpsEngine.Tests\bin\Debug\x
 C:\Users\Ben_Swolo\source\repos\EvolutionSimulator\GurpsEngine.Tests\bin\Debug\xunit.execution.desktop.xml
 C:\Users\Ben_Swolo\source\repos\EvolutionSimulator\GurpsEngine.Tests\obj\Debug\GurpsEngine.Tests.dll
 C:\Users\Ben_Swolo\source\repos\EvolutionSimulator\GurpsEngine.Tests\obj\Debug\GurpsEngine.Tests.pdb
+C:\Users\Ben_Swolo\Source\Repos\Github\GurpsEngine\GurpsEngine.Tests\obj\Debug\GurpsEngine.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Ben_Swolo\Source\Repos\Github\GurpsEngine\GurpsEngine.Tests\obj\Debug\GurpsEngine.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Ben_Swolo\Source\Repos\Github\GurpsEngine\GurpsEngine.Tests\obj\Debug\GurpsEngine.Tests.dll
+C:\Users\Ben_Swolo\Source\Repos\Github\GurpsEngine\GurpsEngine.Tests\obj\Debug\GurpsEngine.Tests.pdb

@@ -19,6 +19,12 @@ namespace EvolutionSimulator.Models.Geo.Grids
     /// <param name="e"></param>
     void Remove(IEntity e);
 
+    bool Contains(IEntity e);
+
+    bool Valid(Point p);
+
+    bool Valid(IEntity e, Direction d);
+
     /// <summary>
     /// Get the entity at a point.
     /// </summary>
