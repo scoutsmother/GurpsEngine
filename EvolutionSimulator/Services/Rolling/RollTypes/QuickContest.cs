@@ -8,8 +8,15 @@ namespace EvolutionSimulator.Services.Rolling.RollTypes
 {
   public class QuickContest : IRollable
   {
-    private IRollable Source;
-    private IRollable Target;
+    private readonly IRollable Source;
+    private readonly IRollable Target;
+
+    // Value is ignored since two rolls are being compared to each other.
+    public double Value { get; }
+
+    // Modifier is ignored for both rolls since the contest is a difference on roll.
+    public double Modifier { get; }
+
     public QuickContest(IRollable src, IRollable targ)
     {
       Source = src;
@@ -18,26 +25,23 @@ namespace EvolutionSimulator.Services.Rolling.RollTypes
 
     public (RollResult result, double margin) Roll()
     {
-      while (true)
-      {
-        var srcRoll = Source.Roll();
-        var targRoll = Target.Roll();
-        var margin = srcRoll.margin - targRoll.margin;
+      var srcRoll = Source.Roll();
+      var targRoll = Target.Roll();
+      var margin = srcRoll.margin - targRoll.margin;
 
-        if (Math.Abs(margin) < 0.0001) continue;
+      if (Math.Abs(margin) < 0.0001)
+        return (RollResult.None, 0);
 
-        if (margin > 5)
-          return (RollResult.CriticalSuccess, margin);
+      else if (margin > 5)
+        return (RollResult.CriticalSuccess, margin);
 
-        if (margin < -5)
-          return (RollResult.CriticalFailure, margin);
+      else if (margin < -5)
+        return (RollResult.CriticalFailure, margin);
 
-        if (margin > 0)
-          return (RollResult.Success, margin);
+      else if (margin > 0)
+        return (RollResult.Success, margin);
 
-        if (margin > 0)
-          return (RollResult.Faliure, margin);
-      }
+      return (RollResult.Faliure, margin);
     }
   }
 }

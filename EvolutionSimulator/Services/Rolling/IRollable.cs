@@ -16,6 +16,9 @@ namespace EvolutionSimulator.Services.Rolling
   }
   public interface IRollable
   {
-    (RollResult result, double margin) Roll(double modifier);
+    double Value { get; }
+    double Modifier { get; }
+
+    (RollResult result, double margin) Roll();
   }
 }

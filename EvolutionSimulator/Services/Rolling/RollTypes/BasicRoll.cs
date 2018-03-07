@@ -10,26 +10,29 @@ namespace EvolutionSimulator.Services.Rolling.RollTypes
   {
     public double Value { get; }
 
-    public BasicRoll(double value)
+    public double Modifier { get; }
+
+    public BasicRoll(double value, double modifier)
     {
       Value = value;
+      Modifier = modifier;
     }
 
-    public (RollResult result, double margin) Roll(double modifier)
+    public (RollResult result, double margin) Roll()
     {
       Random r = new Random();
       int rolledValue = r.Next(1, 6) + r.Next(1, 6) + r.Next(1, 6);
 
-      var margin = (Value + modifier) - rolledValue;
+      var margin = (Value + Modifier) - rolledValue;
 
       if (rolledValue >= 18)
         return (RollResult.CriticalFailure, margin);
-      else if (rolledValue <= 3)
+      if (rolledValue <= 3)
         return (RollResult.CriticalFailure, margin);
-      else if (margin >= 0)
+      if (margin >= 0)
         return (RollResult.Success, margin);
-      else
-        return (RollResult.Faliure, margin);
+
+      return (RollResult.Faliure, margin);
     }
   }
 }
