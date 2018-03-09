@@ -15,7 +15,7 @@ namespace EvolutionSimulator.Models.Geo.Grids
 {
   public class RuleBasedArea : GridArea
   {
-    protected Dictionary<Point, HashSet<IRuleRequirement>> RulesForPoints; 
+    public Dictionary<Point, HashSet<IRuleRequirement>> RulesForPoints { get; }
 
     public RuleBasedArea(int width, int height) : base(width, height)
     {
@@ -26,7 +26,7 @@ namespace EvolutionSimulator.Models.Geo.Grids
 
     public HashSet<IEntity> At(Point p, IRollable roll)
     {
-      var applicableRules = from rule in RulesForPoints[p].ToList()
+      var applicableRules = from rule in RulesForPoints[p]
                             where rule is ObservationRule
                             select rule as ObservationRule;
 
@@ -50,6 +50,25 @@ namespace EvolutionSimulator.Models.Geo.Grids
 
     public void Move(IEntity e, Direction d, IRollable roll)
     {
+      var p = base.Where(e);
+
+      var applicableFrom = 
+        from ruleFrom in RulesForPoints[p]
+        where (ruleFrom as MovementRule)?.Type == MoveType.Out &&
+              ((MovementRule)ruleFrom).RuleDirection == d
+        select ruleFrom;
+
+      var applicableTo =
+        from ruleTo in RulesForPoints[p + d]
+        where (ruleTo as MovementRule)?.Type == MoveType.In &&
+              ((MovementRule)ruleTo).RuleDirection == d
+        select ruleTo;
+
+      var applicableRules = applicableTo.Concat(applicableFrom);
+      if (applicableRules.ToList().TrueForAll(x => x.TrySatisfy(roll)))
+      {
+        base.Move(e, d);
+      }
     }
 
     public override GridArea DeepCopy()

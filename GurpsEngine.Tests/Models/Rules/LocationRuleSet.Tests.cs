@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EvolutionSimulator.Models.Entities;
 using EvolutionSimulator.Models.Geo.Geometry;
+using EvolutionSimulator.Models.Geo.Grids;
 using EvolutionSimulator.Models.Rules;
 using EvolutionSimulator.Models.Rules.RuleTypes;
 using EvolutionSimulator.Services.Rolling;
@@ -12,28 +14,40 @@ using Xunit;
 
 namespace GurpsEngine.Tests.Models.Rules
 {
+
   public class LocationRuleSetTests
   {
-    [Fact]
-    public void TryEnter()
+    #region
+    public static IEnumerable<object[]> MoveData =>
+      new List<object[]>
+      {
+        new object[] { new Point(1,1), Direction.East, MoveType.Out, true},
+        new object[] { new Point(1,1), Direction.East, MoveType.In, false},
+      };
+    #endregion
+
+    [Theory]
+    [MemberData(nameof(MoveData))]
+    public void MovementRuleDirectionTest(Point start, Direction d, MoveType type, bool allowed)
     {
       // Arrange
       var rollable = Substitute.For<IRollable>();
+      var e = Substitute.For<IEntity>();
 
-      var trueReq = Substitute.For<IRuleRequirement>();
-      trueReq.TrySatisfy(Arg.Any<IRollable>()).Returns(true);
+      // Two rules, allow entry via east, deny exit via east.
+      MovementRule trueRule = Substitute.For<MovementRule>(d, type, 0);
+      trueRule.TrySatisfy(Arg.Any<IRollable>()).Returns(allowed);
 
-      var falseReq = Substitute.For<IRuleRequirement>();
-      falseReq.TrySatisfy(Arg.Any<IRollable>()).Returns(false);
+      RuleBasedArea ruleBasedArea = new RuleBasedArea(10, 10);
+      ruleBasedArea.RulesForPoints[start + d].Add(trueRule);
 
-      var trueRule = new Rule(Direction.South, trueReq);
-      var falseRule = new Rule(Direction.North, falseReq);
+      var gridArea = (GridArea) ruleBasedArea;
 
-      var rs = new LocationRuleSet(new HashSet<Rule>() { trueRule }, new HashSet<Rule>() { falseRule });
+      ruleBasedArea.Add(e, start);
 
       // Act & Assert
-      Assert.False(rs.TryLeave(Direction.North, rollable));
-      Assert.True(rs.TryEnter(Direction.South, rollable));
+      ruleBasedArea.Move(e, Direction.East, rollable);
+      Assert.Equal(gridArea.Where(e).Equals(start + d), allowed);
     }
   }
 }

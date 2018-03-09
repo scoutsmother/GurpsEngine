@@ -22,7 +22,8 @@ namespace EvolutionSimulator.Models.Rules.RuleTypes
 
     public virtual bool TrySatisfy(IRollable roll)
     {
-      return roll.Roll(Diff).margin >= 0;
+      roll.Modifier += Diff;
+      return roll.Roll().margin >= 0;
     }
   }
 }

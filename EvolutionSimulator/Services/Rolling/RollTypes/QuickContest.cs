@@ -12,10 +12,10 @@ namespace EvolutionSimulator.Services.Rolling.RollTypes
     private readonly IRollable Target;
 
     // Value is ignored since two rolls are being compared to each other.
-    public double Value { get; }
+    public double Value { get; set; }
 
     // Modifier is ignored for both rolls since the contest is a difference on roll.
-    public double Modifier { get; }
+    public double Modifier { get; set; }
 
     public QuickContest(IRollable src, IRollable targ)
     {

@@ -8,9 +8,9 @@ namespace EvolutionSimulator.Services.Rolling.RollTypes
 {
   public class BasicRoll : IRollable
   {
-    public double Value { get; }
+    public double Value { get; set; }
 
-    public double Modifier { get; }
+    public double Modifier { get; set; }
 
     public BasicRoll(double value, double modifier)
     {

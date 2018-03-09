@@ -8,12 +8,10 @@ using EvolutionSimulator.Services.Rolling.RollTypes;
 
 namespace EvolutionSimulator.Models.Stats
 {
-  public class Stat
+  public class Stat : BasicRoll
   {
-    public double Value { get; }
-    public Stat(double value)
+    public Stat(double value) : base(value, 0.0)
     {
-      Value = value;
     }
 
     public static Stat operator + (Stat s1, Stat s2)

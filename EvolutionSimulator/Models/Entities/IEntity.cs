@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EvolutionSimulator.Models.Stats;
 
 namespace EvolutionSimulator.Models.Entities
 {
   public interface IEntity
   {
+    StatSet Stats { get; }
   }
 }
