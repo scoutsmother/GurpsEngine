@@ -68,12 +68,13 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Models\Geo\Geometry\PointTests.cs" />
-    <Compile Include="Models\Geo\GridAreaTests.cs" />
+    <Compile Include="Models\Geo\Grids\GameStateGridAreaTests.cs" />
+    <Compile Include="Models\Geo\Grids\GridAreaTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Rolling\QuickContestTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Rules\LocationRuleSet.Tests.cs" />
+    <Compile Include="Models\Geo\Grids\RuleBasedAreaTests.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +85,9 @@
       <Project>{dc4e47c2-7e04-4389-b687-2a91d15bc40e}</Project>
       <Name>GurpsEngine</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Rules\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

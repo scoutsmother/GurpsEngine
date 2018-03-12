@@ -27,8 +27,8 @@ namespace EvolutionSimulator.Models.Geo.Grids
     public HashSet<IEntity> At(Point p, IRollable roll)
     {
       var applicableRules = from rule in RulesForPoints[p]
-                            where rule is ObservationRule
-                            select rule as ObservationRule;
+                            where rule is DirectObservationRule
+                            select rule as DirectObservationRule;
 
       var objectiveSet = base.At(p);
 
@@ -41,11 +41,6 @@ namespace EvolutionSimulator.Models.Geo.Grids
       }
 
       return base.At(p);
-    }
-
-    public Point Where(IEntity e, IRollable roll)
-    {
-      return base.Where(e);
     }
 
     public void Move(IEntity e, Direction d, IRollable roll)

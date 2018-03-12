@@ -11,8 +11,6 @@ namespace EvolutionSimulator.Models.Entities
 {
   public interface IActor: IEntity
   {
-    StatSet Stats { get; }
-
     IEntityAction SelectAction(IGameState gs);
   }
 }

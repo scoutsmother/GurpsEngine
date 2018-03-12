@@ -14,28 +14,28 @@ namespace GurpsEngine.Tests.Services.Rolling
   public class QuickContestTests
   {
 
-    [Fact]
-    public void RollTest()
+    [Theory]
+    [InlineData(RollResult.Success, 1, RollResult.Success, 1, RollResult.None, 0)]
+    [InlineData(RollResult.Success, 1, RollResult.Success, 2, RollResult.Faliure, -1)]
+    [InlineData(RollResult.Success, 2, RollResult.Success, 1, RollResult.Success, 1)]
+    [InlineData(RollResult.Success, 7, RollResult.Success, 1, RollResult.CriticalSuccess, 6)]
+    [InlineData(RollResult.Success, 1, RollResult.Success, 7, RollResult.CriticalFailure, -6)]
+    public void RollTest(RollResult srcResult, double srcMargin, RollResult targResult, double targMargin, 
+      RollResult expectedResult, double expectedMargin)
     {
       // Arrange
       IRollable src = Substitute.For<IRollable>();
       IRollable targ = Substitute.For<IRollable>(); 
       QuickContest qc = new QuickContest(src, targ);
 
-      IEnumerable<(RollResult, double)> srcRolls = new List<(RollResult, double)>()
-        {(RollResult.Success, 1), (RollResult.Success, 1), (RollResult.Success, 2)};
-
-      IEnumerable<(RollResult, double)> targRolls = new List<(RollResult, double)>()
-        {(RollResult.Success, 1), (RollResult.Success, 1), (RollResult.Success, 1)};
-
-      src.Roll().Returns((RollResult.Success, 1));
-      targ.Roll().Returns((RollResult.Success, 1));
+      src.Roll().Returns((srcResult, srcMargin));
+      targ.Roll().Returns((targResult, targMargin));
 
       // Act
       var result = qc.Roll();
 
       // Assert
-      Assert.Equal((RollResult.Success, 1), result);
+      Assert.Equal((expectedResult, expectedMargin), result);
     }
   }
 }

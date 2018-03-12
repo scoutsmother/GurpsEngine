@@ -6,6 +6,9 @@ namespace EvolutionSimulator.Models.Geo.Grids
 {
   public interface IGrid
   {
+    int Width { get; }
+    int Height { get; }
+
     /// <summary>
     /// Add an entity to the grid at a point location.
     /// </summary>

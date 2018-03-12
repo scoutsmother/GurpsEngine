@@ -9,11 +9,11 @@ using EvolutionSimulator.Services.Rolling;
 
 namespace EvolutionSimulator.Models.Rules.RuleTypes
 {
-  public class ObservationRule : GenericRule
+  public class DirectObservationRule : GenericRule
   {
     public IEntity Subject { get; }
 
-    public ObservationRule(Direction d, double diff, IEntity subject)
+    public DirectObservationRule(Direction d, double diff, IEntity subject)
     : base(d, diff)
     {
       Subject = subject;

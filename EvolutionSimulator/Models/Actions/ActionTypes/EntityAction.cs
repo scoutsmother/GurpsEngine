@@ -13,9 +13,6 @@ namespace EvolutionSimulator.Models.Actions.ActionTypes
       Source = src;
     }
 
-    public virtual void ResolveAction(IGameState gs)
-    {
-      throw new NotImplementedException();
-    }
+    public abstract void ResolveAction(IGameState gs);
   }
 }

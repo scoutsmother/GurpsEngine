@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,10 +48,15 @@
     <Compile Include="Models\Actions\ActionTypes\TargetedAction.cs" />
     <Compile Include="Models\Actions\IEntityAction.cs" />
     <Compile Include="Models\Actions\Movement\MoveAction.cs" />
+    <Compile Include="Models\Entities\Environment\Wall.cs" />
     <Compile Include="Models\Entities\IActor.cs" />
     <Compile Include="Models\Entities\IEntity.cs" />
+    <Compile Include="Models\Entities\IRuleEnabledEntity.cs" />
+    <Compile Include="Models\Geo\Grids\GameStateGridArea.cs" />
+    <Compile Include="Models\Rules\RuleTypes\DistanceRule.cs" />
     <Compile Include="Models\Rules\RuleTypes\GenericRule.cs" />
-    <Compile Include="Models\Rules\RuleTypes\ObservationRule.cs" />
+    <Compile Include="Models\Rules\RuleTypes\DirectObservationRule.cs" />
+    <Compile Include="Models\Rules\RuleTypes\ThroughObservationRule.cs" />
     <Compile Include="Models\State\IGameState.cs" />
     <Compile Include="Models\State\GameState.cs" />
     <Compile Include="Models\Geo\Grids\GridArea.cs" />
